@@ -11,7 +11,7 @@
  * Plugin Name:         Login by Referer
  * Plugin URI:
  * Description:         This plugin allows a user to login by specific referer.
- * Version:             1.0.0
+ * Version:             1.0.1
  * Requires at least:   6.0
  * Tested up to:        6.4.1
  * Requires PHP:        7.4
