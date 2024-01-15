@@ -1,21 +1,24 @@
 <?php
 /**
+ * Login by Referer
+ *
+ * @package             Login_By_Referer
+ * @author              web83info
+ * @copyright           2023 web83info
+ * @license             GPL-2.0-or-later
+ *
+ * @wordpress-plugin
  * Plugin Name:         Login by Referer
  * Plugin URI:
  * Description:         This plugin allows a user to login by specific referer.
- * Version:             1.0.0
+ * Version:             1.0.1
  * Requires at least:   6.0
  * Tested up to:        6.4.1
  * Requires PHP:        7.4
  * Author:              web83info <me@web83.info>
  * Author URI:
- * Requires License:    no
- * License:             GPLv2+
- *
- * @package Login_By_Referer
- * @author  web83info
- * @link
- * @license
+ * License:             GPL v2 or later
+ * License URI:         https://www.gnu.org/licenses/gpl-2.0.html
  */
 
 namespace LoginByReferer;
