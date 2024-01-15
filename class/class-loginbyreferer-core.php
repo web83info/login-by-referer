@@ -26,9 +26,7 @@ class LoginByReferer_Core {
 	const PLUGIN_PREFIX  = 'login-by-referer';
 	const PLUGIN_GITHUB  = 'https://github.com/web83info/login-by-referer';
 
-	const OPTION_DEFAULT_REFERER_ALLOWED = <<< EOT
-		https://example.com/
-		EOT;
+	const OPTION_DEFAULT_REFERER_ALLOWED = 'https://example.com/';
 	const OPTION_DEFAULT_USER_ID         = '';
 
 	/**

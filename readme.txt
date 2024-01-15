@@ -6,8 +6,8 @@ Requires at least: 6.2
 Tested up to: 6.4.1
 Requires PHP: 7.4
 Stable tag: 1.0.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 This plugin allows a user to login by specific referer.
 
