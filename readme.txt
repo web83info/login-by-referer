@@ -21,7 +21,7 @@ This plugin allows a user to login by specific referer.
 == Changelog ==
 
 = 1.0.1 - 2024-01-15 =
-* Fix: Clarify lisense.
+* Fix: Clarify license.
 
 = 1.0.0 - 2023-11-26 =
 * First release
