@@ -22,7 +22,7 @@ class LoginByReferer_Core {
 	/**
 	 * Plugin constant.
 	 */
-	const PLUGIN_VERSION = '1.0.1';
+	const PLUGIN_VERSION = '1.0.2';
 	const PLUGIN_PREFIX  = 'login-by-referer';
 	const PLUGIN_GITHUB  = 'https://github.com/web83info/login-by-referer';
 
@@ -57,11 +57,14 @@ class LoginByReferer_Core {
 		// Load textdomain.
 		add_action( 'admin_menu', array( $this, 'load_textdomain' ) );
 
+		// Load CSS and JS.
+		add_action( 'wp_enqueue_scripts', array( $this, 'load_css_js' ) );
+
 		// Auto login.
 		add_action( 'init', array( $this, 'auto_login' ) );
 
-		// Subscriber go to dashboard.
-		add_action( 'auth_redirect', array( $this, 'subscriber_no_dashboard' ) );
+		// Auto login user can't go to dashboard.
+		add_action( 'auth_redirect', array( $this, 'auto_login_user_no_dashboard' ) );
 
 		// Add logout button on admin bar.
 		add_action( 'admin_bar_menu', array( $this, 'add_logout_in_admin_bar' ), 9999 );
@@ -74,6 +77,16 @@ class LoginByReferer_Core {
 	 */
 	public function load_textdomain() {
 		load_plugin_textdomain( self::PLUGIN_PREFIX );
+	}
+
+	public function load_css_js() {
+		// CSS.
+		wp_enqueue_style(
+			self::PLUGIN_PREFIX . '-css',
+			plugins_url( 'assets/login-by-referer.min.css', dirname( __FILE__ ) ),
+			array(),
+			self::PLUGIN_VERSION
+		);
 	}
 
 	/**
@@ -109,12 +122,12 @@ class LoginByReferer_Core {
 	}
 
 	/**
-	 * Subscriber go to dashboard.
+	 * Auto login user can't go to dashboard.
 	 *
 	 * @param int $user_id User ID.
 	 * @return void
 	 */
-	public function subscriber_no_dashboard( $user_id ) {
+	public function auto_login_user_no_dashboard( $user_id ) {
 		if ( $this->is_autologin_user() ) {
 			wp_safe_redirect( get_home_url() );
 			exit();
@@ -146,7 +159,7 @@ class LoginByReferer_Core {
 			// Delete all nodes.
 			$nodes = $wp_admin_bar->get_nodes();
 			foreach ( $nodes as $node ) {
-				// 'top-secondary' is located on roght top.
+				// 'top-secondary' is located on right top.
 				if ( ! $node->parent || 'top-secondary' === $node->parent ) {
 					$wp_admin_bar->remove_menu( $node->id );
 				}
@@ -154,7 +167,7 @@ class LoginByReferer_Core {
 
 			$wp_admin_bar->add_menu(
 				array(
-					'id'    => 'new-item-in-admin-bar',
+					'id'    => 'loginbyreferer-logout',
 					'title' => __( 'Logout', 'login-by-referer' ),
 					'href'  => wp_logout_url(),
 					'meta'  => array(

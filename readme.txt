@@ -3,9 +3,9 @@ Contributors: web83info
 Donate link: https://www.buymeacoffee.com/web83info
 Tags: login, referer
 Requires at least: 6.2
-Tested up to: 6.4.1
+Tested up to: 6.4.2
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,8 +20,12 @@ This plugin allows a user to login by specific referer.
 
 == Changelog ==
 
+= 1.0.2 - 2024-01-23 =
+* Add: Plugin original CSS.
+* Tested up to: 6.4.2.
+
 = 1.0.1 - 2024-01-15 =
-* Fix: Clarify lisense.
+* Fix: Clarify license.
 
 = 1.0.0 - 2023-11-26 =
 * First release
