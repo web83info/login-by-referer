@@ -109,6 +109,37 @@ class LoginByReferer_Admin {
 				'label_for' => LoginByReferer_Core::PLUGIN_PREFIX . '_user_id',
 			),
 		);
+
+		// Add section 3.
+		add_settings_section(
+			LoginByReferer_Core::PLUGIN_PREFIX . '-section3',
+			__( 'Other settings', 'login-by-referer' ),
+			array( $this, 'register_section3_html' ),
+			LoginByReferer_Core::PLUGIN_PREFIX
+		);
+		// Add field 3-1 (Init).
+		add_settings_field(
+			LoginByReferer_Core::PLUGIN_PREFIX . '_other_init',
+			__( 'Initialize the settings', 'login-by-referer' ),
+			array( $this, 'register_field_other_init_html' ),
+			LoginByReferer_Core::PLUGIN_PREFIX,
+			LoginByReferer_Core::PLUGIN_PREFIX . '-section3',
+			array(
+				'label_for' => LoginByReferer_Core::PLUGIN_PREFIX . '_other_init',
+			),
+		);
+		// Add field 3-2 (Uninstall).
+		add_settings_field(
+			LoginByReferer_Core::PLUGIN_PREFIX . '_other_uninstall',
+			__( 'Delete the settings when uninstall', 'login-by-referer' ),
+			array( $this, 'register_field_other_uninstall_html' ),
+			LoginByReferer_Core::PLUGIN_PREFIX,
+			LoginByReferer_Core::PLUGIN_PREFIX . '-section3',
+			array(
+				'label_for' => LoginByReferer_Core::PLUGIN_PREFIX . '_other_uninstall',
+			),
+		);
+
 	}
 
 	/**
@@ -179,6 +210,61 @@ class LoginByReferer_Admin {
 	}
 
 	/**
+	 * Section 3 HTML.
+	 *
+	 * @return void
+	 */
+	public function register_section3_html() {
+		echo esc_html__( 'Other settings which are not included in the above', 'login-by-referer' );
+	}
+
+	/**
+	 * Field 3-1 HTML.
+	 *
+	 * @return void
+	 */
+	public function register_field_other_init_html() {
+		printf(
+			'<input type="hidden" name="%s_other_init" value="0" />',
+			esc_attr( LoginByReferer_Core::PLUGIN_PREFIX )
+		);
+		printf(
+			'<input type="checkbox" name="%s_other_init" id="%s_other_init" value="1" %s />',
+			esc_attr( LoginByReferer_Core::PLUGIN_PREFIX ),
+			esc_attr( LoginByReferer_Core::PLUGIN_PREFIX ),
+			checked( get_option( LoginByReferer_Core::PLUGIN_PREFIX . '_other_init' ), '1', false )
+		);
+		printf(
+			'<label for="%s_other_init">%s</label>',
+			esc_attr( LoginByReferer_Core::PLUGIN_PREFIX ),
+			esc_html__( 'Initialize all the settings to default values', 'login-by-referer' )
+		);
+	}
+
+	/**
+	 * Field 3-2 HTML.
+	 *
+	 * @return void
+	 */
+	public function register_field_other_uninstall_html() {
+		printf(
+			'<input type="hidden" name="%s_other_uninstall" value="0" />',
+			esc_attr( LoginByReferer_Core::PLUGIN_PREFIX )
+		);
+		printf(
+			'<input type="checkbox" name="%s_other_uninstall" id="%s_other_uninstall" value="1" %s />',
+			esc_attr( LoginByReferer_Core::PLUGIN_PREFIX ),
+			esc_attr( LoginByReferer_Core::PLUGIN_PREFIX ),
+			checked( get_option( LoginByReferer_Core::PLUGIN_PREFIX . '_other_uninstall' ), '1', false )
+		);
+		printf(
+			'<label for="%s_other_uninstall">%s</label>',
+			esc_attr( LoginByReferer_Core::PLUGIN_PREFIX ),
+			esc_html__( 'Delete all the settings when this plugin is uninstalled', 'login-by-referer' )
+		);
+	}
+
+	/**
 	 * Register settings.
 	 *
 	 * @return void
@@ -192,6 +278,16 @@ class LoginByReferer_Admin {
 		register_setting(
 			LoginByReferer_Core::PLUGIN_PREFIX . '-field1',
 			LoginByReferer_Core::PLUGIN_PREFIX . '_user_id',
+			'esc_attr',
+		);
+		register_setting(
+			LoginByReferer_Core::PLUGIN_PREFIX . '-field1',
+			LoginByReferer_Core::PLUGIN_PREFIX . '_other_init',
+			'esc_attr',
+		);
+		register_setting(
+			LoginByReferer_Core::PLUGIN_PREFIX . '-field1',
+			LoginByReferer_Core::PLUGIN_PREFIX . '_other_uninstall',
 			'esc_attr',
 		);
 	}

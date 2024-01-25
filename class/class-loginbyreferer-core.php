@@ -29,6 +29,9 @@ class LoginByReferer_Core {
 	const OPTION_DEFAULT_REFERER_ALLOWED = 'https://example.com/';
 	const OPTION_DEFAULT_USER_ID         = '';
 
+	const OPTION_DEFAULT_OTHER_INIT      = 0;
+	const OPTION_DEFAULT_OTHER_UNINSTALL = 0;
+
 	/**
 	 * Default values for table 'options'.
 	 * Saved under the key 'login-by-referer_*'.
@@ -38,6 +41,8 @@ class LoginByReferer_Core {
 	private $settings = array(
 		'referer_allowed' => self::OPTION_DEFAULT_REFERER_ALLOWED,
 		'user_id'         => self::OPTION_DEFAULT_USER_ID,
+		'other_init'      => self::OPTION_DEFAULT_OTHER_INIT,
+		'other_uninstall' => self::OPTION_DEFAULT_OTHER_UNINSTALL,
 	);
 
 	/**
@@ -46,6 +51,14 @@ class LoginByReferer_Core {
 	 * @return void
 	 */
 	private function __construct() {
+
+		// Initialize if option 'login-by-referer_other_init' is checked.
+		if ( '1' === get_option( self::PLUGIN_PREFIX . '_other_init' ) ) {
+			foreach ( $this->settings as $option_key => $option_value ) {
+				delete_option( self::PLUGIN_PREFIX . '_' . $option_key );
+			}
+		}
+
 		// Load default value.
 		foreach ( $this->settings as $option_key => $option_value ) {
 			if ( false === get_option( self::PLUGIN_PREFIX . '_' . $option_key ) ) {
