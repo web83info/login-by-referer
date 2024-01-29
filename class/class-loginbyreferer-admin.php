@@ -57,7 +57,7 @@ class LoginByReferer_Admin {
 		echo '<div class="wrap">';
 		echo '<h1>Login by Referer Setting</h1>';
 		echo '<form method="post" action="options.php">';
-		settings_fields( LoginByReferer_Core::PLUGIN_PREFIX . '-field1' );
+		settings_fields( LoginByReferer_Core::PLUGIN_PREFIX . '-field' );
 		do_settings_sections( LoginByReferer_Core::PLUGIN_PREFIX );
 		submit_button();
 		echo '</form>';
@@ -271,22 +271,22 @@ class LoginByReferer_Admin {
 	 */
 	public function register_settings() {
 		register_setting(
-			LoginByReferer_Core::PLUGIN_PREFIX . '-field1',
+			LoginByReferer_Core::PLUGIN_PREFIX . '-field',
 			LoginByReferer_Core::PLUGIN_PREFIX . '_referer_allowed',
 			'esc_html',
 		);
 		register_setting(
-			LoginByReferer_Core::PLUGIN_PREFIX . '-field1',
+			LoginByReferer_Core::PLUGIN_PREFIX . '-field',
 			LoginByReferer_Core::PLUGIN_PREFIX . '_user_id',
 			'esc_attr',
 		);
 		register_setting(
-			LoginByReferer_Core::PLUGIN_PREFIX . '-field1',
+			LoginByReferer_Core::PLUGIN_PREFIX . '-field',
 			LoginByReferer_Core::PLUGIN_PREFIX . '_other_init',
 			'esc_attr',
 		);
 		register_setting(
-			LoginByReferer_Core::PLUGIN_PREFIX . '-field1',
+			LoginByReferer_Core::PLUGIN_PREFIX . '-field',
 			LoginByReferer_Core::PLUGIN_PREFIX . '_other_uninstall',
 			'esc_attr',
 		);
