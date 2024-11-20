@@ -92,11 +92,16 @@ class LoginByReferer_Core {
 		load_plugin_textdomain( self::PLUGIN_PREFIX );
 	}
 
+	/**
+	 * Load CSS and JS.
+	 *
+	 * @return void
+	 */
 	public function load_css_js() {
 		// CSS.
 		wp_enqueue_style(
 			self::PLUGIN_PREFIX . '-css',
-			plugins_url( 'assets/login-by-referer.min.css', dirname( __FILE__ ) ),
+			plugins_url( 'assets/login-by-referer.min.css', __DIR__ ),
 			array(),
 			self::PLUGIN_VERSION
 		);
@@ -137,10 +142,9 @@ class LoginByReferer_Core {
 	/**
 	 * Auto login user can't go to dashboard.
 	 *
-	 * @param int $user_id User ID.
 	 * @return void
 	 */
-	public function auto_login_user_no_dashboard( $user_id ) {
+	public function auto_login_user_no_dashboard() {
 		if ( $this->is_autologin_user() ) {
 			wp_safe_redirect( get_home_url() );
 			exit();
