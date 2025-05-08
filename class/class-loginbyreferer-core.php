@@ -67,9 +67,6 @@ class LoginByReferer_Core {
 			}
 		}
 
-		// Load textdomain.
-		add_action( 'admin_menu', array( $this, 'load_textdomain' ) );
-
 		// Load CSS and JS.
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_css_js' ) );
 
@@ -81,15 +78,6 @@ class LoginByReferer_Core {
 
 		// Add logout button on admin bar.
 		add_action( 'admin_bar_menu', array( $this, 'add_logout_in_admin_bar' ), 9999 );
-	}
-
-	/**
-	 * Load textdomain.
-	 *
-	 * @return void
-	 */
-	public function load_textdomain() {
-		load_plugin_textdomain( self::PLUGIN_PREFIX );
 	}
 
 	/**
