@@ -139,7 +139,6 @@ class LoginByReferer_Admin {
 				'label_for' => LoginByReferer_Core::PLUGIN_PREFIX . '_other_uninstall',
 			),
 		);
-
 	}
 
 	/**
@@ -163,7 +162,6 @@ class LoginByReferer_Admin {
 			esc_attr( LoginByReferer_Core::PLUGIN_PREFIX ),
 			esc_html( get_option( LoginByReferer_Core::PLUGIN_PREFIX . '_referer_allowed' ) )
 		);
-
 	}
 
 	/**
